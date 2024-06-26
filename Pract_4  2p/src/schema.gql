@@ -1,0 +1,83 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Curso {
+  id: ID!
+  descripcion: String!
+  fecha_inicio: String!
+  estado: String!
+  inscripciones: [Inscripcion!]
+}
+
+type Inscripcion {
+  id: ID!
+  fecha: String!
+  hora: String!
+  valor_cancelado: Float!
+  estado: String!
+  curso: Curso!
+  aspirante: Aspirante!
+}
+
+type Aspirante {
+  id: ID!
+  nombre: String!
+  identificacion: String!
+  estado: String!
+  inscripciones: [Inscripcion!]
+}
+
+type Query {
+  aspirantes(estado: String): [Aspirante!]!
+  aspirante(id: Float!): Aspirante!
+  cursos(estado: String): [Curso!]!
+  curso(id: Float!): Curso!
+  inscripciones(estado: String): [Inscripcion!]!
+  inscripcion(id: Float!): Inscripcion!
+}
+
+type Mutation {
+  createAspirante(createAspiranteInput: CreateAspiranteInput!): Aspirante!
+  updateAspirante(updateAspiranteInput: UpdateAspiranteInput!): Aspirante!
+  removeAspirante(id: Float!): Aspirante!
+  createCurso(createCursoInput: CreateCursoInput!): Curso!
+  updateCurso(updateCursoInput: UpdateCursoInput!): Curso!
+  removeCurso(id: Float!): Curso!
+  create(createInscripcionInput: CreateInscripcionInput!): Inscripcion!
+  update(updateInscripcionInput: UpdateInscripcionInput!): Inscripcion!
+  remove(id: Float!): Inscripcion!
+}
+
+input CreateAspiranteInput {
+  nombre: String!
+  identificacion: String!
+  estado: String!
+}
+
+input UpdateAspiranteInput {
+  id: ID!
+}
+
+input CreateCursoInput {
+  descripcion: String!
+  fecha_inicio: String!
+  estado: String!
+}
+
+input UpdateCursoInput {
+  id: ID!
+}
+
+input CreateInscripcionInput {
+  idcurso: String!
+  idaspirante: String!
+  fecha: String
+  hora: String
+  valor_cancelado: Int!
+  estado: String!
+}
+
+input UpdateInscripcionInput {
+  id: ID!
+}
